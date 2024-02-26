@@ -11,7 +11,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     
     private var tableView = UITableView()
     
-    private var goodss: [Goods] = [Goods(image: .furniture, 
+    var goodss: [Goods] = [Goods(image: UIImage(named: "furniture")!,
                                          name: "Furniture",
                                          label: "785 Items",
                                          price: "$230",
@@ -20,7 +20,7 @@ class ViewController: UIViewController, UITableViewDataSource {
                                          material: "Textile, Velvet, Cotton",
                                          dimensions: "55.6 x 71.5 x 67.4 inches",
                                          weight: "30.3 Pounds"),
-    Goods(image: .kitchenware,
+          Goods(image: UIImage(named: "kitchenware")!,
           name: "Kitchenware",
           label: "645 Items",
           price: "$760",
@@ -29,7 +29,7 @@ class ViewController: UIViewController, UITableViewDataSource {
           material: "Wool, Metal, Glass",
           dimensions: "95.6 x 131.5 x 47.4 inches",
           weight: "120.3 Pounds"),
-                                   Goods(image: .table,
+                                   Goods(image: UIImage(named: "table")!,
                                          name: "Reading Table",
                                          label: "Inventory",
                                          price: "$89",

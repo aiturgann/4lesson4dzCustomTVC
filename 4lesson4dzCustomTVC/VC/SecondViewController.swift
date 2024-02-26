@@ -229,7 +229,7 @@ class SecondViewController: UIViewController {
     }
     
     var count = 1
-    var price = 230
+    var price = 0
     
     @objc private func plus() {
         count += 1
