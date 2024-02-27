@@ -12,33 +12,37 @@ class ViewController: UIViewController, UITableViewDataSource {
     private var tableView = UITableView()
     
     var goodss: [Goods] = [Goods(image: UIImage(named: "furniture")!,
-                                         name: "Furniture",
-                                         label: "785 Items",
-                                         price: "$230",
-                                         roomType: "Living Room",
-                                         color: "Gray",
-                                         material: "Textile, Velvet, Cotton",
-                                         dimensions: "55.6 x 71.5 x 67.4 inches",
-                                         weight: "30.3 Pounds"),
-          Goods(image: UIImage(named: "kitchenware")!,
-          name: "Kitchenware",
-          label: "645 Items",
-          price: "$760",
-          roomType: "Kitchen",
-          color: "White",
-          material: "Wool, Metal, Glass",
-          dimensions: "95.6 x 131.5 x 47.4 inches",
-          weight: "120.3 Pounds"),
-                                   Goods(image: UIImage(named: "table")!,
-                                         name: "Reading Table",
-                                         label: "Inventory",
-                                         price: "$89",
-                                         roomType: "Office",
-                                         color: "Black",
-                                         material: "Plastik",
-                                         dimensions: "5.6 x 3.5 x 7.4 inches",
-                                         weight: "3.3 Pounds")]
-    
+                                 name: "Furniture",
+                                 label: "785 Items",
+                                 details: Details(roomType: "Living Room",
+                                                  color: "Gray",
+                                                  material: "Textile, Velvet, Cotton",
+                                                  dimensions: "55.6 x 71.5 x 67.4 inches",
+                                                  weight: "30.3 Pounds", 
+                                                  priceLbl: "$230",
+                                                  price: 230)),
+                           
+                           Goods(image: UIImage(named: "kitchenware")!,
+                                 name: "Kitchenware",
+                                 label: "645 Items",
+                                 details: Details(roomType: "Kitchen",
+                                                  color: "White",
+                                                  material: "Wool, Metal, Glass",
+                                                  dimensions: "95.6 x 131.5 x 47.4 inches",
+                                                  weight: "120.3 Pounds", 
+                                                  priceLbl: "$590",
+                                                  price: 590)),
+                           
+                           Goods(image: UIImage(named: "table")!,
+                                 name: "Reading Table",
+                                 label: "Inventory",
+                                 details: Details(roomType: "Office",
+                                                  color: "Black",
+                                                  material: "Plastik",
+                                                  dimensions: "5.6 x 3.5 x 7.4 inches",
+                                                  weight: "3.3 Pounds", 
+                                                  priceLbl: "$39",
+                                                  price: 39))]
     
             
 
@@ -71,7 +75,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
-        cell.qwerty(goods: goodss[indexPath.row])
+        cell.setData(goods: goodss[indexPath.row])
         return cell
     }
     
@@ -80,15 +84,13 @@ class ViewController: UIViewController, UITableViewDataSource {
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = SecondViewController()
-        vc.image.image = goodss[indexPath.row].image
+        
+        let detail = goodss[indexPath.row].details
+        let vc = SecondViewController(detailInit: detail)
+        
+        vc.goodsImage.image = goodss[indexPath.row].image
         vc.nameLabel.text = goodss[indexPath.row].name
-        vc.priceLabel.text = goodss[indexPath.row].price
-        vc.roomTypeValue.text = goodss[indexPath.row].roomType
-        vc.colorValue.text = goodss[indexPath.row].color
-        vc.materialValue.text = goodss[indexPath.row].material
-        vc.dimensionsValue.text = goodss[indexPath.row].dimensions
-        vc.weightValue.text = goodss[indexPath.row].weight
+
         navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -11,10 +11,15 @@ struct Goods {
     var image: UIImage
     var name: String
     var label: String
-    var price: String
+    var details: Details
+}
+
+struct Details {
     var roomType: String
     var color: String
     var material: String
     var dimensions: String
     var weight: String
+    var priceLbl: String
+    var price: Int
 }

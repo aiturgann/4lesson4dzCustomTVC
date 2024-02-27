@@ -64,6 +64,9 @@
 			children = (
 				1DC88C422B8747B700868C52 /* Delegates */,
 				1DC88C4B2B89F1C500868C52 /* VC */,
+				1DC88C792B8DAF2D00868C52 /* CuctomCell */,
+				1DC88C752B8CCCA400868C52 /* MakerView */,
+				1DC88C782B8DAF0B00868C52 /* Model */,
 				1DC88C412B8747A100868C52 /* Resources */,
 				1DC88C3B2B87473900868C52 /* Info.plist */,
 			);
@@ -73,9 +76,6 @@
 		1DC88C412B8747A100868C52 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1DC88C432B8747DB00868C52 /* CustomTableViewCell.swift */,
-				1DC88C452B87493800868C52 /* MakerView.swift */,
-				1DC88C472B874A9F00868C52 /* Goods.swift */,
 				1DC88C362B87473900868C52 /* Assets.xcassets */,
 				1DC88C382B87473900868C52 /* LaunchScreen.storyboard */,
 			);
@@ -98,6 +98,30 @@
 				1DC88C4C2B89F1EF00868C52 /* SecondViewController.swift */,
 			);
 			path = VC;
+			sourceTree = "<group>";
+		};
+		1DC88C752B8CCCA400868C52 /* MakerView */ = {
+			isa = PBXGroup;
+			children = (
+				1DC88C452B87493800868C52 /* MakerView.swift */,
+			);
+			path = MakerView;
+			sourceTree = "<group>";
+		};
+		1DC88C782B8DAF0B00868C52 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1DC88C472B874A9F00868C52 /* Goods.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1DC88C792B8DAF2D00868C52 /* CuctomCell */ = {
+			isa = PBXGroup;
+			children = (
+				1DC88C432B8747DB00868C52 /* CustomTableViewCell.swift */,
+			);
+			path = CuctomCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

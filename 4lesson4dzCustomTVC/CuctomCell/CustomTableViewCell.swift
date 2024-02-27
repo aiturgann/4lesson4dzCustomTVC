@@ -51,7 +51,7 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     
-    func qwerty(goods: Goods) {
+    func setData(goods: Goods) {
         image.image = goods.image
         nameLabel.text = goods.name
         label.text = goods.label

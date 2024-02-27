@@ -9,7 +9,7 @@ import UIKit
 
 class SecondViewController: UIViewController {
     
-    var image = MakerView().uiImageMaker()
+    var goodsImage = MakerView().uiImageMaker()
     
     
     private let topBtnsSV = MakerView().uiStackViewMaker(axis: .horizontal,
@@ -109,6 +109,19 @@ class SecondViewController: UIViewController {
                                                       cornerRadius: 12)
     
     
+    var detail: Details
+    
+    init(detailInit: Details) {
+        self.detail = detailInit
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     
     
 
@@ -116,22 +129,23 @@ class SecondViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupUI()
+        setDetailData()
     }
     
     private func setupUI() {
-        view.addSubview(image)
+        view.addSubview(goodsImage)
         NSLayoutConstraint.activate(
-            [image.topAnchor.constraint(equalTo: view.topAnchor),
-             image.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-             image.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-             image.heightAnchor.constraint(equalToConstant: 375)
+            [goodsImage.topAnchor.constraint(equalTo: view.topAnchor),
+             goodsImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+             goodsImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+             goodsImage.heightAnchor.constraint(equalToConstant: 375)
             ])
         
         view.addSubview(topBtnsSV)
         NSLayoutConstraint.activate(
-            [topBtnsSV.topAnchor.constraint(equalTo: image.topAnchor, constant: 100),
-             topBtnsSV.leadingAnchor.constraint(equalTo: image.leadingAnchor, constant: 16),
-             topBtnsSV.trailingAnchor.constraint(equalTo: image.trailingAnchor, constant: -16),
+            [topBtnsSV.topAnchor.constraint(equalTo: goodsImage.topAnchor, constant: 100),
+             topBtnsSV.leadingAnchor.constraint(equalTo: goodsImage.leadingAnchor, constant: 16),
+             topBtnsSV.trailingAnchor.constraint(equalTo: goodsImage.trailingAnchor, constant: -16),
              topBtnsSV.heightAnchor.constraint(equalToConstant: 36)
             ])
         
@@ -152,7 +166,7 @@ class SecondViewController: UIViewController {
         
         view.addSubview(nameLabel)
         NSLayoutConstraint.activate(
-            [nameLabel.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 20),
+            [nameLabel.topAnchor.constraint(equalTo: goodsImage.bottomAnchor, constant: 20),
              nameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
              nameLabel.heightAnchor.constraint(equalToConstant: 28)
             ])
@@ -226,15 +240,50 @@ class SecondViewController: UIViewController {
             ])
         
         
+        
+        
+        xButton.addTarget(self, action: #selector(xButtonTppd), for: .touchUpInside)
+        likeButton.addTarget(self, action: #selector(likeButtonTppd), for: .touchUpInside)
+        plusBtn.addTarget(self, action: #selector(summ), for: .touchUpInside)
     }
     
-    var count = 1
-    var price = 0
+    @objc private func xButtonTppd() {
+        navigationController?.popToRootViewController(animated: true)
+    }
     
-    @objc private func plus() {
+    var heartImage = UIImage(systemName: "heart.fill")
+    
+    @objc private func likeButtonTppd() {
+        if likeButton.tintColor == .black {
+            likeButton.imageView?.image = heartImage        // здесь хотела поменять image на другой чтобы полностью красился, но                                                что то не получилось обратиться к image кнопки, только через                                                      imageView, наверное из за этого не менятся
+            likeButton.tintColor = .red
+        } else {
+            likeButton.tintColor = .black
+        }
+        
+    }
+    
+    
+    
+    var count = 1
+    var count2 = 2
+    
+    @objc private func summ() {
+        var price = detail.price
         count += 1
-        
-        
+        price = price * count
+        countLabel.text = "\(count)"
+        priceLabel.text = "$\(price)"
+    }
+    
+    
+    private func setDetailData() {
+        roomTypeValue.text = detail.roomType
+        colorValue.text = detail.color
+        materialValue.text = detail.material
+        dimensionsValue.text = detail.dimensions
+        weightValue.text = detail.weight
+        priceLabel.text = detail.priceLbl
     }
 
 }
